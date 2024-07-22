@@ -174,7 +174,7 @@ class Omniversepricing_Lite extends Module
      */
     protected function getConfigForm()
     {
-        $cron_url = "URL for your CRON command to automatic price history. (PRO Feature)";
+        $cron_url = "URL for your CRON command to automatic price history.";
         $tabs = [
             'general' => $this->l('General'),
             'content_tab' => $this->l('Content'),
@@ -486,6 +486,13 @@ class Omniversepricing_Lite extends Module
                         'tab' => 'action_tab',
                     ],
                     [
+                        'type' => 'html',
+                        'label' => '',
+                        'name' => 'OMNIVERSEPRICING_FEAT_DESCRIPTION',
+                        'html_content' => '<div>This <a href="https://addons.prestashop.com/en/legal/90152-omniverse-pricing-eu-omnibus-directive-law-compatible.html">Premium Feature</a> is important for <strong>Italian Progressive Sale Rule</strong>. It will stop recording price history during campaigns that changes price frequently.</div>',
+                        'tab' => 'action_tab',
+                    ],
+                    [
                         'type' => 'switch',
                         'label' => $this->l('Reset Price History'),
                         'name' => 'OMNIVERSEPRICING_RESET_HISTORY',
@@ -602,10 +609,25 @@ class Omniversepricing_Lite extends Module
             return $this->displayError($this->l('Changes are not saved because you are in Demo Mode!!!'));
         }
         $form_values = $this->getConfigFormValues();
+        $pro_keys = [
+            'OMNIVERSEPRICING_DELETE_OLD',
+            'OMNIVERSEPRICING_RESET_HISTORY',
+            'OMNIVERSEPRICING_SYNC_START',
+            'OMNIVERSEPRICING_STOP_RECORD',
+            'OMNIVERSEPRICING_SYNC_END',
+            'OMNIVERSEPRICING_BACK_COLOR',
+            'OMNIVERSEPRICING_FONT_COLOR',
+            'OMNIVERSEPRICING_FONT_SIZE',
+            'OMNIVERSEPRICING_PADDING',
+            'OMNIVERSEPRICING_PRECENT_INDICATOR',
+            'OMNIVERSEPRICING_AUTO_DELETE_OLD',
+            'OMNIVERSEPRICING_NOTICE_STYLE',
+            'OMNIVERSEPRICING_SHOW_IF_CURRENT',
+            'OMNIVERSEPRICING_PRICE_WITH_TAX',
+        ];
 
         foreach (array_keys($form_values) as $key) {
-            if ($key == 'OMNIVERSEPRICING_DELETE_OLD' || $key == 'OMNIVERSEPRICING_RESET_HISTORY') {
-            } else {
+            if (!in_array($key, $pro_keys)) {
                 if ($key == 'OMNIVERSEPRICING_POSITION') {
                     if (Tools::getValue($key) == 'footer_product') {
                         if (!$this->isRegisteredInHook('displayFooterProduct')) {
