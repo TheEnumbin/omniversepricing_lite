@@ -26,26 +26,30 @@
 if (!defined('_PS_VERSION_')) {
     exit;
 }
-$sql = [];
+$has_free = Configuration::get('OMNIVERSEPRICING_FREE_INSTALLED', false);
 
-$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'omniversepricing_products` (
-    `id_omniversepricing` int(11) NOT NULL AUTO_INCREMENT,
-    `product_id` int(11),
-    `id_product_attribute` int(11),
-    `id_country` int(11),
-    `id_currency` int(11),
-    `id_group` int(11),
-    `price` decimal(20,6),
-    `promo` int(3),
-    `date` datetime,
-    `shop_id` int(11),
-    `lang_id` int(11),
-    `with_tax` int(11),
-    PRIMARY KEY  (`id_omniversepricing`)
-) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+if (!$has_free) {
+    $sql = [];
 
-foreach ($sql as $query) {
-    if (Db::getInstance()->execute($query) == false) {
-        return false;
+    $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'omniversepricing_products` (
+        `id_omniversepricing` int(11) NOT NULL AUTO_INCREMENT,
+        `product_id` int(11),
+        `id_product_attribute` int(11),
+        `id_country` int(11),
+        `id_currency` int(11),
+        `id_group` int(11),
+        `price` decimal(20,6),
+        `promo` int(3),
+        `date` datetime,
+        `shop_id` int(11),
+        `lang_id` int(11),
+        `with_tax` int(11),
+        PRIMARY KEY  (`id_omniversepricing`)
+    ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;';
+
+    foreach ($sql as $query) {
+        if (Db::getInstance()->execute($query) == false) {
+            return false;
+        }
     }
 }

@@ -32,10 +32,15 @@
 if (!defined('_PS_VERSION_')) {
     exit;
 }
-$sql = [];
-$sql[] = 'DROP TABLE `' . _DB_PREFIX_ . 'omniversepricing_products`;';
-foreach ($sql as $query) {
-    if (Db::getInstance()->execute($query) == false) {
-        return false;
+
+$has_pro = Configuration::get('OMNIVERSEPRICING_PRO_INSTALLED', false);
+
+if (!$has_pro) {
+    $sql = [];
+    $sql[] = 'DROP TABLE `' . _DB_PREFIX_ . 'omniversepricing_products`;';
+    foreach ($sql as $query) {
+        if (Db::getInstance()->execute($query) == false) {
+            return false;
+        }
     }
 }
