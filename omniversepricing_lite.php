@@ -53,6 +53,7 @@ class Omniversepricing_Lite extends Module
     public function install()
     {
         $date = date('Y-m-d');
+        Configuration::updateValue('OMNIVERSEPRICING_FREE_INSTALLED', true);
         Configuration::updateValue('OMNIVERSEPRICING_STABLE_VERSION', $this->version);
         Configuration::updateValue('OMNIVERSEPRICING_TEXT', 'Lowest price within 30 days before promotion : ');
         Configuration::updateValue('OMNIVERSEPRICING_SHOW_IF_CURRENT', false);
