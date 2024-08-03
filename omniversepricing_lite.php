@@ -181,6 +181,7 @@ class Omniversepricing_Lite extends Module
             'content_tab' => $this->l('Content'),
             'design_tab' => $this->l('Design  (PRO Features)'),
             'action_tab' => $this->l('Action'),
+            'why_pro' => $this->l('Why Pro???'),
         ];
 
         return [
@@ -554,6 +555,17 @@ class Omniversepricing_Lite extends Module
                         'html_content' => '<div class="input-group"><div class="form-control-plaintext"><a class="d-block" href="#">' . $cron_url . '</a></div></div>',
                         'tab' => 'action_tab',
                         'desc' => $this->l('This url will run Cron job for this shop. Change shop context to get cron url for separate shops.'),
+                    ],
+                    [
+                        'type' => 'html',
+                        'label' => $this->l('Why PRO???'),
+                        'name' => 'OMNIVERSEPRICING_CRON_URL',
+                        'html_content' => '<div class="input-group"><a target="_blank"
+                                href="https://addons.prestashop.com/en/legal/90152-omniverse-pricing-eu-omnibus-directive-law-compatible.html">
+                                <img src="' . $this->_path . '/views/img/why_pro.png" alt="Your Image Description"
+                                    style="max-width: 100%; height: auto;">
+                            </a></div>',
+                        'tab' => 'why_pro',
                     ],
                 ],
                 'tabs' => $tabs,
