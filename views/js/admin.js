@@ -61,28 +61,4 @@ $(document).ready(function () {
         call_sync_ajax_lite(0);
         $('#omni_sync_bt_lite').html("Syncing 0/" + omniversepricing_total_products + " products")
     });
-
-    function call_sync_ajax_lite(start) {
-        $.ajax({
-            type: 'POST',
-            url: omniversepricing_ajax_url,
-            dataType: 'html',
-            data: {
-                controller: 'AdminAjaxOmniverseLite',
-                action: 'OmniDataSync',
-                start: start,
-                ajax: true
-            },
-            success: function (data) {
-                var response = JSON.parse(data);
-                if (response.start != 0) {
-                    call_sync_ajax_lite(response.start)
-                    $('#omni_sync_bt_lite').html("Syncing " + response.start + "/" + omniversepricing_total_products + " products")
-                } else {
-                    $(".omni-sync-loader").hide();
-                    $('#omni_sync_bt_lite').html("Sync completed " + omniversepricing_total_products + " products")
-                }
-            }
-        });
-    }
 });

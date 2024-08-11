@@ -198,8 +198,12 @@ class Omniversepricing_Lite extends Module
                         'options' => [
                             'query' => [
                                 [
+                                    'id' => 'w_hook',
+                                    'name' => $this->l('Automated with Hook'),
+                                ],
+                                [
                                     'id' => 'manual',
-                                    'name' => $this->l('Manual Sync - One click syncing'),
+                                    'name' => $this->l('Manual Sync - One click syncing (PRO Feature)'),
                                 ],
                                 [
                                     'id' => 'w_change',
@@ -208,10 +212,6 @@ class Omniversepricing_Lite extends Module
                                 [
                                     'id' => 'w_cron',
                                     'name' => $this->l('Automated with Cron (PRO Feature)'),
-                                ],
-                                [
-                                    'id' => 'w_hook',
-                                    'name' => $this->l('Automated with Hook  (PRO Feature)'),
                                 ],
                             ],
                             'id' => 'id',
