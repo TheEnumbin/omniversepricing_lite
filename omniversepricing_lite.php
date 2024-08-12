@@ -838,6 +838,7 @@ class Omniversepricing_Lite extends Module
         $controller = Tools::getValue('controller');
 
         $notice_page = Configuration::get('OMNIVERSEPRICING_NOTICE_PAGE', 'single');
+        $history_func = Configuration::get('OMNIVERSEPRICING_HISTORY_FUNC', 'manual');
         $product_obj = new Product($product['id_product'], true, $this->context->language->id);
 
         if ($notice_page == 'single' && $controller != 'product') {
@@ -849,6 +850,13 @@ class Omniversepricing_Lite extends Module
             false,
             $product['id_product_attribute']
         );
+
+        if ($history_func == 'w_hook') {
+            $existing = $this->omniversepricing_check_existance($product_obj->id, $price_amount, $product['id_product_attribute']);
+            if (empty($existing)) {
+                $this->omniversepricing_insert_data($product, $product_obj, $price_amount, $omni_tax_include);
+            }
+        }
 
         $omniverse_price = $this->omniversepricing_get_price($product_obj->id, $price_amount, $product['id_product_attribute']);
         $priceFormatter = new PriceFormatter();
