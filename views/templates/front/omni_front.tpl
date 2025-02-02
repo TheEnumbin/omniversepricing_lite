@@ -22,4 +22,4 @@
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
-<span class="omniversepricing-notice">{$omniversepricing_text} {$omniversepricing_price}</span>
+<span class="omniversepricing-lite-notice">{$omniversepricing_text} {$omniversepricing_price}</span>

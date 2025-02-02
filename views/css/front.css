@@ -25,7 +25,7 @@
 * Don't forget to prefix your containers with your own identifier
 * to avoid any conflicts with others containers.
 */
-.omniversepricing-notice{
+.omniversepricing-lite-notice {
     padding: 6px;
     font-size: 12px;
     font-weight: 600;
@@ -42,7 +42,8 @@
     margin-top: 20px;
 }
 
-.omniversepricing-pricing-table th, td {
+.omniversepricing-pricing-table th,
+td {
     padding: 10px;
     text-align: left;
 }

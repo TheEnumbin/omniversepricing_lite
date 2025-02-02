@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 2007-2022 PrestaShop
  *
@@ -736,7 +737,7 @@ class Omniversepricing_Lite extends Module
         foreach ($results as $result) {
             $omniverse_prices[$result['id_omniversepricing']]['id'] = $result['id_omniversepricing'];
             $omniverse_prices[$result['id_omniversepricing']]['date'] = $result['date'];
-            $omniverse_prices[$result['id_omniversepricing']]['price'] = $priceFormatter->format($result['price']);
+            $omniverse_prices[$result['id_omniversepricing']]['price'] = $priceFormatter->convertAndFormat($result['price']);
             $omniverse_prices[$result['id_omniversepricing']]['promotext'] = 'Normal Price';
             if ($result['promo']) {
                 $omniverse_prices[$result['id_omniversepricing']]['promotext'] = 'Promotional Price';
@@ -861,13 +862,13 @@ class Omniversepricing_Lite extends Module
         $omniverse_price = $this->omniversepricing_get_price($product_obj->id, $price_amount, $product['id_product_attribute']);
         $priceFormatter = new PriceFormatter();
         if ($omniverse_price) {
-            $omniversepricinge_formatted_price = $priceFormatter->format($omniverse_price);
+            $omniversepricinge_formatted_price = $priceFormatter->convertAndFormat($omniverse_price);
             $return_arr['omni_price'] = $omniversepricinge_formatted_price;
             return $return_arr;
         } else {
             $omni_if_current = false;
             if ($omni_if_current) {
-                $return_arr['omni_price'] = $priceFormatter->format($price_amount);
+                $return_arr['omni_price'] = $priceFormatter->convertAndFormat($price_amount);
                 return $return_arr;
             }
             return false;
